@@ -44,27 +44,55 @@ export default function Page() {
           ))}
         </div>
 
-        <aside className="h-fit rounded-2xl border border-line bg-bg-raised p-8">
-          <span className="kicker mb-6 block">Event Details</span>
-          <ul className="flex flex-col gap-5">
-            <li className="flex items-center gap-4">
-              <CalendarDays className="h-5 w-5 shrink-0 text-gold" strokeWidth={1.6} />
-              <span className="text-sm text-text">{event.date}</span>
-            </li>
-            <li className="flex items-center gap-4">
-              <Clock className="h-5 w-5 shrink-0 text-gold" strokeWidth={1.6} />
-              <span className="text-sm text-text">{event.time}</span>
-            </li>
-            <li className="flex items-center gap-4">
-              <MapPin className="h-5 w-5 shrink-0 text-gold" strokeWidth={1.6} />
-              <span className="text-sm text-text">
-                {event.city}
-                <span className="block text-text-faint">{event.venue}</span>
-              </span>
-            </li>
+        <aside className="relative h-fit overflow-hidden rounded-2xl border border-line bg-bg-raised p-8">
+          {/* gold glow accent */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-[radial-gradient(circle,oklch(0.8_0.12_85/0.22),transparent_70%)] blur-2xl"
+          />
+
+          <div className="relative flex items-center justify-between">
+            <span className="kicker">Event Details</span>
+            <span className="rounded-full border border-gold/40 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-gold">
+              {event.edition}
+            </span>
+          </div>
+
+          <ul className="relative mt-6 flex flex-col divide-y divide-line">
+            {[
+              { icon: CalendarDays, label: "Date", value: event.date },
+              { icon: Clock, label: "Time", value: event.time },
+              {
+                icon: MapPin,
+                label: "Venue",
+                value: event.city,
+                sub: event.venue,
+              },
+            ].map((row) => (
+              <li key={row.label} className="flex items-center gap-4 py-4 first:pt-0">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/30 bg-gold/5 text-gold">
+                  <row.icon className="h-4 w-4" strokeWidth={1.75} />
+                </span>
+                <span className="flex flex-col">
+                  <span className="text-[0.65rem] uppercase tracking-[0.2em] text-text-faint">
+                    {row.label}
+                  </span>
+                  <span className="text-sm font-medium text-text">
+                    {row.value}
+                  </span>
+                  {row.sub && (
+                    <span className="text-xs text-text-faint">{row.sub}</span>
+                  )}
+                </span>
+              </li>
+            ))}
           </ul>
-          <div className="mt-8">
+
+          <div className="relative mt-8 border-t border-line pt-6">
             <Button href={event.registerUrl}>Register Now</Button>
+            <p className="mt-3 text-xs uppercase tracking-[0.15em] text-text-faint">
+              Limited seats
+            </p>
           </div>
         </aside>
       </div>

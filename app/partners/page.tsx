@@ -1,6 +1,6 @@
 import { Users, Megaphone, Handshake } from "lucide-react";
 import GoldRule from "@/components/ui/GoldRule";
-import Button from "@/components/ui/Button";
+import CTABanner from "@/components/ui/CTABanner";
 import PartnerLogo from "@/components/ui/PartnerLogo";
 import { partners } from "@/data/partners";
 import { contacts } from "@/data/partners";
@@ -87,23 +87,24 @@ export default function Page() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-start gap-6 rounded-2xl border border-line bg-bg-raised p-8 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-text">
-              Become a Partner
-            </h3>
-            <p className="mt-2 text-sm text-text-muted">
-              Write to us at{" "}
-              <a
-                href={`mailto:${partnerEmail}`}
-                className="text-gold underline underline-offset-4"
-              >
-                {partnerEmail}
-              </a>{" "}
-              to explore partnership opportunities.
-            </p>
-          </div>
-          <Button href="/contact">Get in Touch</Button>
+        <div className="mt-12">
+          <CTABanner
+            title="Become a Partner"
+            href="/contact"
+            cta="Get in Touch"
+            body={
+              <>
+                Write to us at{" "}
+                <a
+                  href={`mailto:${partnerEmail}`}
+                  className="text-gold underline underline-offset-4"
+                >
+                  {partnerEmail}
+                </a>{" "}
+                to explore partnership opportunities.
+              </>
+            }
+          />
         </div>
       </div>
     </section>

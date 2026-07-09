@@ -9,7 +9,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import GoldRule from "@/components/ui/GoldRule";
-import Button from "@/components/ui/Button";
+import CTABanner from "@/components/ui/CTABanner";
 import { agenda } from "@/data/agenda";
 import { event } from "@/data/event";
 
@@ -90,16 +90,13 @@ export default function Page() {
         })}
       </ol>
 
-      <div className="mt-16 flex flex-col items-start gap-6 rounded-2xl border border-line bg-bg-raised p-8 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-text">
-            Secure Your Seat
-          </h2>
-          <p className="mt-2 text-sm text-text-muted">
-            Limited seats. Register to be in the room.
-          </p>
-        </div>
-        <Button href={event.registerUrl}>Register Now</Button>
+      <div className="mt-16">
+        <CTABanner
+          title="Secure Your Seat"
+          body="Register to be in the room where the conversations happen."
+          href={event.registerUrl}
+          note="Limited seats"
+        />
       </div>
     </section>
   );

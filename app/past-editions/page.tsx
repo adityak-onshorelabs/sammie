@@ -1,5 +1,6 @@
 import GoldRule from "@/components/ui/GoldRule";
 import Button from "@/components/ui/Button";
+import CTABanner from "@/components/ui/CTABanner";
 import { PhotoTile, VideoCard } from "@/components/ui/GalleryMedia";
 import { editions } from "@/data/editions";
 import { photos, videos, highlights } from "@/data/gallery";
@@ -110,16 +111,13 @@ export default function Page() {
       </div>
 
       {/* CTA */}
-      <div className="mt-24 flex flex-col items-start gap-6 rounded-2xl border border-line bg-bg-raised p-8 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-text">
-            Be Part of the Next Edition
-          </h3>
-          <p className="mt-2 flex items-center gap-1 text-sm text-text-muted">
-            {event.name}, {event.edition}. {event.date}.
-          </p>
-        </div>
-        <Button href={event.registerUrl}>Register Now</Button>
+      <div className="mt-24">
+        <CTABanner
+          title="Be Part of the Next Edition"
+          body={`${event.name}, ${event.edition}. ${event.date}.`}
+          href={event.registerUrl}
+          note="Limited seats"
+        />
       </div>
     </section>
   );
