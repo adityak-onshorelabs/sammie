@@ -1,0 +1,72 @@
+References
+1. https://brandequity.economictimes.indiatimes.com/brand-world-summit
+2. https://www.kyoorius.com/
+
+Their brand - https://www.socialsamosa.com/
+
+Brochure for the event - supporting-docs\brochure.jpeg
+
+*Homepage*
+* Hero Banner
+* Event Theme
+* Date & Venue
+* Register CTA
+* Event Overview
+* Event Statistics
+* Featured Sessions / Conversations
+* Featured Speakers
+* Agenda Preview
+* Why Attend
+* Partners & Sponsors
+* Previous Editions
+* Registration CTA
+* Footer
+
+*Navigation*
+* Home
+* Overview
+* Speakers
+* Agenda
+* Registration
+* Partners
+* Previous Editions
+* Contact
+
+*Speakers*
+* Speaker Listing
+* Individual Speaker Profile
+
+*Agenda*
+* Full Agenda
+* Session Details
+
+*Registration*
+* Registration Form
+* Confirmation Page
+
+*Previous Editions*
+* Previous Themes
+* Speakers
+* Agenda
+* Gallery
+* Videos
+* Highlights
+
+*Contact*
+* General Enquiry
+* Speaker Enquiry
+* Partnership Enquiry
+
+*Gallery*
+* Photo Gallery
+* Video Gallery(YouTube Embeds)
+
+*CMS (Admin)*
+* Manage Homepage,  Speakers, Agenda,  Partners, Registrations, Previous Editions, Manage Gallery, Baseline SEO
+
+*Integrations*
+* Google Analytics
+* Google Tag Manager
+* Meta Pixel
+* LinkedIn Insight Tag
+* Email

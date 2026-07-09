@@ -1,26 +1,138 @@
 @import "tailwindcss";
 
+@theme {
+  /* Color — OKLCH, warm-tinted neutrals (hue ~85), champagne gold accent */
+  --color-bg: oklch(0.15 0.008 85);
+  --color-bg-raised: oklch(0.19 0.01 85);
+  --color-bg-sunken: oklch(0.12 0.008 85);
+  --color-line: oklch(0.3 0.012 85);
+  --color-text: oklch(0.95 0.01 85);
+  --color-text-muted: oklch(0.72 0.012 85);
+  --color-text-faint: oklch(0.55 0.012 85);
+  --color-gold: oklch(0.8 0.115 85);
+  --color-gold-deep: oklch(0.68 0.12 80);
+  --color-gold-light: oklch(0.9 0.06 92);
+  --color-gold-bronze: oklch(0.54 0.1 66);
+
+  /* Fonts (wired via next/font in layout.tsx) */
+  --font-display: var(--font-display-src), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body-src), ui-sans-serif, system-ui, sans-serif;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Type scale (ratio ~1.333) */
+  --text-hero: clamp(2.75rem, 8vw, 6.5rem);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  /* Metallic gold: bright champagne highlight -> gold -> bronze -> gold return (sheen band) */
+  --gradient-gold: linear-gradient(
+    155deg,
+    oklch(0.92 0.05 93) 0%,
+    oklch(0.83 0.12 87) 26%,
+    oklch(0.68 0.12 78) 52%,
+    oklch(0.55 0.1 68) 70%,
+    oklch(0.82 0.12 86) 100%
+  );
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Metallic gold TEXT — client brand treatment (logo, headings, CTA all use it). */
+.text-gold-metallic {
+  background: var(--gradient-gold);
+  background-size: 220% 100%;
+  background-position: 0% 0%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Metallic gold SURFACE — buttons, chips. */
+.bg-gold-metallic {
+  background: var(--gradient-gold);
+  background-size: 220% 100%;
+  background-position: 0% 0%;
+  color: var(--color-bg);
+  box-shadow:
+    inset 0 1px 0 oklch(0.96 0.05 93 / 0.55),
+    inset 0 -1px 0 oklch(0.4 0.08 62 / 0.6);
+}
+
+/* Slow travelling sheen for the metallic look. */
+.gold-shine {
+  animation: goldShine 7s linear infinite;
+}
+@keyframes goldShine {
+  to {
+    background-position: 220% 0%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gold-shine {
+    animation: none;
   }
 }
 
+
+html {
+  background: var(--color-bg);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Kicker: uppercase micro-label used before section headings */
+.kicker {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-faint);
+}
+
+/* Display heading utility */
+.display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  font-weight: 800;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-bg);
+}
+
+/* Thin gold scrollbar accent (webkit) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-sunken);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
