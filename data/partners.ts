@@ -49,4 +49,5 @@ export const navLinks = [
   { label: "Programme", href: "/programme" },
   { label: "Partners", href: "/partners" },
   { label: "Past Editions", href: "/past-editions" },
+  { label: "Gallery", href: "/gallery" },
 ];

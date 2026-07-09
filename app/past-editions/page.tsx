@@ -1,20 +1,15 @@
-import { Images, PlaySquare, Sparkles } from "lucide-react";
 import GoldRule from "@/components/ui/GoldRule";
 import Button from "@/components/ui/Button";
+import { PhotoTile, VideoCard } from "@/components/ui/GalleryMedia";
 import { editions } from "@/data/editions";
+import { photos, videos, highlights } from "@/data/gallery";
 import { event } from "@/data/event";
 
 export const metadata = {
   title: "Past Editions — The Marketing Pulse Summit",
   description:
-    "Revisit previous editions of SAMMIE: themes, speakers, galleries and highlights.",
+    "Revisit previous editions of SAMMIE: themes, highlights, galleries and videos.",
 };
-
-const archives = [
-  { icon: Images, title: "Photo Gallery", body: "Moments from the stage, the floor and the after-hours." },
-  { icon: PlaySquare, title: "Session Videos", body: "Full talks and panels from previous editions." },
-  { icon: Sparkles, title: "Highlights", body: "The ideas and moments that defined each year." },
-];
 
 export default function Page() {
   return (
@@ -56,49 +51,75 @@ export default function Page() {
         ))}
       </div>
 
-      {/* Archive */}
+      {/* Highlights */}
       <div className="mt-24">
         <div className="mb-4 flex items-center gap-3">
           <GoldRule width="2rem" />
-          <span className="kicker">The Archive</span>
+          <span className="kicker">Highlights</span>
         </div>
         <h2 className="display max-w-2xl text-3xl text-text sm:text-4xl">
-          Galleries, Videos &amp; Highlights
+          Moments That Defined Each Year
         </h2>
 
         <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3">
-          {archives.map((a) => (
+          {highlights.map((h) => (
             <div
-              key={a.title}
-              className="group flex h-full flex-col gap-4 bg-bg p-8 transition-colors duration-300 hover:bg-bg-raised"
+              key={h.year}
+              className="group flex h-full flex-col gap-3 bg-bg p-8 transition-colors duration-300 hover:bg-bg-raised"
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-line text-gold transition-all duration-300 group-hover:border-gold group-hover:shadow-[0_0_26px_-8px_var(--color-gold)]">
-                <a.icon className="h-5 w-5" strokeWidth={1.6} />
+              <span className="font-display text-4xl font-black text-gold-metallic">
+                {h.year}
               </span>
-              <h3 className="font-display text-xl font-bold uppercase tracking-tight text-text">
-                {a.title}
+              <h3 className="font-display text-lg font-bold uppercase tracking-tight text-text">
+                {h.title}
               </h3>
-              <p className="max-w-xs text-sm leading-relaxed text-text-muted">
-                {a.body}
-              </p>
-              <span className="mt-2 text-xs uppercase tracking-[0.2em] text-text-faint">
-                Coming Soon
-              </span>
+              <p className="text-sm leading-relaxed text-text-muted">{h.body}</p>
             </div>
           ))}
         </div>
+      </div>
 
-        <div className="mt-12 flex flex-col items-start gap-6 rounded-2xl border border-line bg-bg-raised p-8 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-text">
-              Be Part of the Next Edition
-            </h3>
-            <p className="mt-2 text-sm text-text-muted">
-              {event.name}, {event.edition}. {event.date}.
-            </p>
-          </div>
-          <Button href={event.registerUrl}>Register Now</Button>
+      {/* Gallery preview */}
+      <div className="mt-24">
+        <div className="mb-4 flex items-center gap-3">
+          <GoldRule width="2rem" />
+          <span className="kicker">Gallery</span>
         </div>
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <h2 className="display max-w-2xl text-3xl text-text sm:text-4xl">
+            Photos &amp; Videos
+          </h2>
+          <Button href="/gallery" variant="ghost">
+            View Full Gallery
+          </Button>
+        </div>
+
+        {/* Photo preview */}
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {photos.slice(0, 4).map((p) => (
+            <PhotoTile key={p.id} photo={{ ...p, size: undefined }} className="aspect-[4/3]" />
+          ))}
+        </div>
+
+        {/* Video preview */}
+        <div className="mt-4 grid gap-6 sm:grid-cols-3">
+          {videos.map((v) => (
+            <VideoCard key={v.id} video={v} />
+          ))}
+        </div>
+      </div>
+
+      {/* CTA */}
+      <div className="mt-24 flex flex-col items-start gap-6 rounded-2xl border border-line bg-bg-raised p-8 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-text">
+            Be Part of the Next Edition
+          </h3>
+          <p className="mt-2 flex items-center gap-1 text-sm text-text-muted">
+            {event.name}, {event.edition}. {event.date}.
+          </p>
+        </div>
+        <Button href={event.registerUrl}>Register Now</Button>
       </div>
     </section>
   );

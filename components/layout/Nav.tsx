@@ -42,7 +42,7 @@ export default function Nav() {
         }`}
       >
         <nav
-          className={`mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-500 ${
+          className={`flex w-full items-center justify-between gap-8 px-6 transition-all duration-500 sm:px-10 xl:px-16 ${
             scrolled ? "py-3" : "py-5"
           }`}
         >
