@@ -11,10 +11,10 @@ export default function PastEditions() {
     <section className="border-t border-line bg-bg-sunken py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading
-          kicker="Past Editions"
-          title="Revisit. Relearn. Reimagine."
+          kicker="The SAMMIE Journey"
+          title="From Celebrating the Best to Defining What's Next"
           action={
-            <Button href="/past-editions" variant="ghost">
+            <Button href="/sammiejourney" variant="ghost">
               Explore All Editions
             </Button>
           }
@@ -24,7 +24,7 @@ export default function PastEditions() {
           {editions.map((e, i) => (
             <motion.a
               key={e.year}
-              href={`/past-editions#${e.year}`}
+              href={`/sammiejourney#${e.year}`}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}

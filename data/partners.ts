@@ -16,26 +16,6 @@ export const partners: Partner[] = [
   { name: "Zerodha", logo: "/partners/zerodha.svg" },
 ];
 
-export interface WhyAttend {
-  title: string;
-  body: string;
-}
-
-export const whyAttend: WhyAttend[] = [
-  {
-    title: "Learn",
-    body: "Hear from India's most influential marketing leaders and category definers.",
-  },
-  {
-    title: "Connect",
-    body: "Network with CMOs, founders and decision makers driving marketing today.",
-  },
-  {
-    title: "Lead",
-    body: "Get future-ready insights to lead brands, teams and businesses with impact.",
-  },
-];
-
 export const contacts = [
   { label: "Attend", name: "Pranita", email: "pranita@socialsamosa.com", phone: "+91 98201 38735" },
   { label: "Partner", name: "Partnerships", email: "info@socialsamosa.com", phone: "+91 99309 08043" },
@@ -45,9 +25,10 @@ export const contacts = [
 export const navLinks = [
   { label: "Overview", href: "/overview" },
   { label: "Conversations", href: "/#conversations" },
-  { label: "Jury", href: "/jury" },
-  { label: "Programme", href: "/programme" },
+  { label: "Voices", href: "/voices" },
+  { label: "Agenda", href: "/agenda" },
+  { label: "SAMMIE Journey", href: "/sammiejourney" },
   { label: "Partners", href: "/partners" },
-  { label: "Past Editions", href: "/past-editions" },
   { label: "Gallery", href: "/gallery" },
+  { label: "Contact", href: "/contact" },
 ];

@@ -33,7 +33,7 @@ export default function Agenda() {
       <div className="mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-between gap-10">
           <SectionHeading
-            kicker="Programme at a Glance"
+            kicker="The Agenda"
             title={
               <>
                 A Day of Ideas
@@ -43,7 +43,7 @@ export default function Agenda() {
             }
           />
           <div>
-            <Button href="/programme" variant="ghost">
+            <Button href="/agenda" variant="ghost">
               View Detailed Agenda
             </Button>
           </div>

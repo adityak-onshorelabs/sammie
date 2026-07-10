@@ -80,6 +80,21 @@ html {
   background: var(--color-bg);
 }
 
+/* Pre-paint intro shield: covers content BY DEFAULT so page chrome can never
+   flash before the head script decides. It is only revealed once the script
+   (or the finished loader) sets data-intro="0". React mounts the animated
+   loader above it at z-100 while data-intro="1". */
+#intro-shield {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: var(--color-bg);
+  display: block;
+}
+html[data-intro="0"] #intro-shield {
+  display: none;
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-text);

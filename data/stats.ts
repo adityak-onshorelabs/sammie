@@ -6,9 +6,7 @@ export interface Stat {
 }
 
 export const stats: Stat[] = [
-  { value: 40, suffix: "+", label: "Speakers" },
-  { value: 500, suffix: "+", label: "Marketing Leaders" },
-  { value: 25, suffix: "+", label: "Sessions" },
-  { value: 1, label: "Stage" },
-  { value: 7, ordinal: "th", label: "Edition" },
+  { value: 25, suffix: "+", label: "Speakers" },
+  { value: 5, suffix: "+", label: "Sessions" },
+  { value: 200, suffix: "+", label: "Advertising & Marketing Professionals" },
 ];

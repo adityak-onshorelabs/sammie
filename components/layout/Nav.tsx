@@ -9,11 +9,22 @@ import Button from "@/components/ui/Button";
 import { navLinks } from "@/data/partners";
 import { event } from "@/data/event";
 import { easeOutExpo } from "@/lib/motion";
+import { useIntro, chromeIn } from "./Intro";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { intro, reveal } = useIntro();
+
+  // Entrance props for nav chrome. When this load isn't an intro load, elements
+  // render statically (initial=false) with no animation.
+  const enter = (i: number) => ({
+    variants: chromeIn,
+    custom: i,
+    initial: intro ? ("hidden" as const) : false,
+    animate: reveal ? ("show" as const) : ("hidden" as const),
+  });
 
   const isActive = (href: string) => {
     // In-page anchors (e.g. "/#conversations") never take the active page state.
@@ -46,13 +57,15 @@ export default function Nav() {
             scrolled ? "py-3" : "py-5"
           }`}
         >
-          <Logo />
+          <motion.div {...enter(0)}>
+            <Logo />
+          </motion.div>
 
           <ul className="hidden items-center gap-8 lg:flex">
-            {navLinks.map((l) => {
+            {navLinks.map((l, i) => {
               const active = isActive(l.href);
               return (
-                <li key={l.href}>
+                <motion.li key={l.href} {...enter(1 + i)}>
                   <Link
                     href={l.href}
                     aria-current={active ? "page" : undefined}
@@ -67,33 +80,23 @@ export default function Nav() {
                       }`}
                     />
                   </Link>
-                </li>
+                </motion.li>
               );
             })}
           </ul>
 
-          <div className="hidden items-center gap-4 lg:flex">
-            <Link
-              href="/contact"
-              aria-current={isActive("/contact") ? "page" : undefined}
-              className={`rounded-full border px-5 py-2.5 text-sm font-semibold uppercase tracking-wider transition-colors duration-300 ${
-                isActive("/contact")
-                  ? "border-gold bg-gold text-bg"
-                  : "border-gold/50 text-gold hover:bg-gold hover:text-bg"
-              }`}
-            >
-              Contact
-            </Link>
+          <motion.div className="hidden items-center gap-4 lg:flex" {...enter(1 + navLinks.length)}>
             <Button href={event.registerUrl} className="!px-6 !py-3">
               Register Now
             </Button>
-          </div>
+          </motion.div>
 
-          <button
+          <motion.button
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
             aria-expanded={open}
             className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
+            {...enter(1)}
           >
             <span
               className={`h-px w-6 bg-text transition-all duration-300 ${
@@ -105,7 +108,7 @@ export default function Nav() {
                 open ? "-translate-y-[3.5px] -rotate-45" : ""
               }`}
             />
-          </button>
+          </motion.button>
         </nav>
       </div>
 
@@ -135,13 +138,6 @@ export default function Nav() {
               ))}
             </ul>
             <div className="mt-8 flex flex-col gap-4">
-              <Link
-                href="/contact"
-                onClick={() => setOpen(false)}
-                className="inline-flex w-fit rounded-full border border-gold/50 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-gold"
-              >
-                Contact
-              </Link>
               <Button href={event.registerUrl}>Register Now</Button>
             </div>
           </motion.div>

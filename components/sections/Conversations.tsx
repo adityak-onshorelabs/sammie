@@ -6,7 +6,6 @@ import {
   Globe,
   ShoppingCart,
   Eye,
-  Wallet,
   Bot,
   MessageSquare,
   type LucideIcon,
@@ -17,12 +16,12 @@ import { sessions } from "@/data/sessions";
 import { easeOutExpo } from "@/lib/motion";
 
 const topicIcon: Record<string, LucideIcon> = {
-  "brand-vs-performance": TrendingUp,
+  "reality-check": TrendingUp,
+  "culture-content-commerce": ShoppingCart,
   "regional-internet": Globe,
-  "quick-commerce": ShoppingCart,
-  "attention-recession": Eye,
-  "budget-debate": Wallet,
-  "ai-copilot": Bot,
+  "festivals-fandoms": MessageSquare,
+  "ai-muscle": Bot,
+  "media-moves-markets": Eye,
 };
 
 export default function Conversations() {
@@ -30,9 +29,9 @@ export default function Conversations() {
     <section id="conversations" className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
       <SectionHeading
         kicker="The Conversations"
-        title="What We'll Discuss"
+        title="The Forces Shaping Marketing Now"
         action={
-          <Button href="/programme" variant="ghost">
+          <Button href="/agenda" variant="ghost">
             View Full Agenda
           </Button>
         }
@@ -46,7 +45,7 @@ export default function Conversations() {
           return (
           <motion.a
             key={s.id}
-            href={`/programme#${s.id}`}
+            href={`/agenda#${s.id}`}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}

@@ -5,7 +5,7 @@ import { stats } from "@/data/stats";
 export default function Stats() {
   return (
     <section className="border-y border-line bg-bg-raised">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-line sm:grid-cols-3 lg:grid-cols-5 lg:divide-y-0">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 divide-x divide-y divide-line sm:grid-cols-3 sm:divide-y-0">
         {stats.map((s, i) => (
           <Reveal key={s.label} delay={i * 0.08}>
             <div className="flex flex-col items-center gap-2 px-6 py-10 text-center">

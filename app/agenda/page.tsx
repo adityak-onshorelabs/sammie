@@ -14,7 +14,7 @@ import { agenda } from "@/data/agenda";
 import { event } from "@/data/event";
 
 export const metadata = {
-  title: "Programme — The Marketing Pulse Summit",
+  title: "Agenda — The Marketing Pulse Summit",
   description:
     "The full agenda for SAMMIE: The Marketing Pulse Summit, a day of ideas that move markets.",
 };
@@ -40,7 +40,7 @@ export default function Page() {
     <section className="mx-auto max-w-7xl px-6 pb-28 pt-36">
       <div className="mb-6 flex items-center gap-3">
         <GoldRule width="2rem" />
-        <span className="kicker">Programme</span>
+        <span className="kicker">The Agenda</span>
       </div>
       <h1 className="display max-w-3xl text-5xl text-text sm:text-7xl">
         A Day of Ideas That Move Markets

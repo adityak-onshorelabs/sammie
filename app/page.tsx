@@ -4,7 +4,6 @@ import Overview from "@/components/sections/Overview";
 import Conversations from "@/components/sections/Conversations";
 import Jury from "@/components/sections/Jury";
 import Agenda from "@/components/sections/Agenda";
-import WhyAttend from "@/components/sections/WhyAttend";
 import PastEditions from "@/components/sections/PastEditions";
 import Partners from "@/components/sections/Partners";
 import RegisterCTA from "@/components/sections/RegisterCTA";
@@ -18,7 +17,6 @@ export default function Home() {
       <Conversations />
       <Jury />
       <Agenda />
-      <WhyAttend />
       <PastEditions />
       <Partners />
       <RegisterCTA />

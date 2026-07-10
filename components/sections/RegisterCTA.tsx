@@ -16,7 +16,7 @@ export default function RegisterCTA() {
       <div className="mx-auto flex max-w-7xl flex-col items-start gap-8 px-6 py-20 lg:flex-row lg:items-center lg:justify-between">
         <Reveal>
           <h2 className="display max-w-2xl text-4xl text-bg sm:text-5xl">
-            Be Part of the Conversation Shaping the Future of Marketing.
+            Be in the Room with India&rsquo;s Leading CMOs and Marketing Heads.
           </h2>
           <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-bg/70">
             Limited Seats. Register Now.

@@ -17,8 +17,8 @@ export default function Jury() {
     <section className="py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading
-          kicker="The Jury"
-          title="Industry Leaders. Bold Perspectives."
+          kicker="The Voices"
+          title="Behind India's Leading Brands"
           action={
             <div className="flex items-center gap-3">
               <div className="hidden gap-2 sm:flex">
@@ -33,7 +33,7 @@ export default function Jury() {
                   </button>
                 ))}
               </div>
-              <Button href="/jury" variant="ghost">
+              <Button href="/voices" variant="ghost">
                 View All
               </Button>
             </div>

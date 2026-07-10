@@ -7,9 +7,9 @@ import { photos, videos, highlights } from "@/data/gallery";
 import { event } from "@/data/event";
 
 export const metadata = {
-  title: "Past Editions — The Marketing Pulse Summit",
+  title: "The SAMMIE Journey — The Marketing Pulse Summit",
   description:
-    "Revisit previous editions of SAMMIE: themes, highlights, galleries and videos.",
+    "The SAMMIE journey: from celebrating the best to defining what's next — themes, highlights, galleries and videos across editions.",
 };
 
 export default function Page() {
@@ -17,10 +17,10 @@ export default function Page() {
     <section className="mx-auto max-w-7xl px-6 pb-28 pt-36">
       <div className="mb-6 flex items-center gap-3">
         <GoldRule width="2rem" />
-        <span className="kicker">Past Editions</span>
+        <span className="kicker">The SAMMIE Journey</span>
       </div>
       <h1 className="display max-w-3xl text-5xl text-text sm:text-7xl">
-        Revisit. Relearn. Reimagine.
+        From Celebrating the Best to Defining What&rsquo;s Next
       </h1>
       <p className="mt-6 max-w-xl text-base leading-relaxed text-text-muted">
         Years of decoding what drives marketing in India. Here is where the

@@ -46,17 +46,6 @@ export default function Hero() {
       />
 
       <div className="relative z-10 mx-auto flex min-h-dvh max-w-7xl flex-col justify-center px-6 pb-24 pt-32">
-        <motion.p
-          variants={fade}
-          custom={-4}
-          initial="hidden"
-          animate="show"
-          className="kicker mb-7 flex items-center gap-3"
-        >
-          <span className="inline-block h-px w-8 bg-gold" />
-          {event.edition} &nbsp;/&nbsp; {event.city}
-        </motion.p>
-
         <h1
           className="display relative max-w-5xl text-text"
           style={{ fontSize: "var(--text-hero)" }}
