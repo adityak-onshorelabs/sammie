@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion, type Variants } from "framer-motion";
 import { event } from "@/data/event";
 import { easeOutExpo } from "@/lib/motion";
@@ -135,24 +136,21 @@ export default function Intro({ children }: { children: React.ReactNode }) {
 
             {/* center wordmark */}
             <div className="relative flex flex-1 flex-col items-center justify-center gap-6 px-6">
-              <div className="flex items-center gap-4 sm:gap-5">
-                <motion.span
-                  aria-hidden
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.7, ease: easeOutExpo, delay: 0.1 }}
-                  className="inline-block h-0 w-0 border-y-[14px] border-l-[22px] border-y-transparent border-l-gold sm:border-y-[18px] sm:border-l-[28px]"
-                />
-                <div className="overflow-hidden">
-                  <motion.h1
-                    initial={{ y: "110%" }}
-                    animate={{ y: 0 }}
-                    transition={{ duration: 0.9, ease: easeOutExpo }}
-                    className="text-gold-metallic gold-shine font-display text-6xl font-black uppercase leading-none tracking-tight sm:text-8xl"
-                  >
-                    SAMMIE
-                  </motion.h1>
-                </div>
+              <div className="overflow-hidden">
+                <motion.div
+                  initial={{ y: "110%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.9, ease: easeOutExpo }}
+                >
+                  <Image
+                    src="/logos/marketing-pulse-white.png"
+                    alt="The Marketing Pulse Summit"
+                    width={526}
+                    height={278}
+                    priority
+                    className="h-28 w-auto sm:h-44"
+                  />
+                </motion.div>
               </div>
 
               <motion.p

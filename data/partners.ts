@@ -16,10 +16,32 @@ export const partners: Partner[] = [
   { name: "Zerodha", logo: "/partners/zerodha.svg" },
 ];
 
-export const contacts = [
-  { label: "Attend", name: "Pranita", email: "pranita@socialsamosa.com", phone: "+91 98201 38735" },
-  { label: "Partner", name: "Partnerships", email: "info@socialsamosa.com", phone: "+91 99309 08043" },
-  { label: "General", name: "General", email: "hello@socialsamosa.com", phone: "+91 97695 70660" },
+export interface ContactPerson {
+  email: string;
+  phone: string;
+}
+
+export interface Contact {
+  label: string;
+  people: ContactPerson[];
+}
+
+export const contacts: Contact[] = [
+  {
+    label: "Attend",
+    people: [
+      { email: "ali@socialsamosa.com", phone: "+91 82910 09692" },
+      { email: "kunal@socialsamosa.com", phone: "+91 88790 45594" },
+    ],
+  },
+  {
+    label: "Partner",
+    people: [{ email: "rhea@socialsamosa.com", phone: "+91 97694 56104" }],
+  },
+  {
+    label: "General",
+    people: [{ email: "tirtha@socialsamosa.com", phone: "+91 99752 31383" }],
+  },
 ];
 
 export const navLinks = [
@@ -27,7 +49,7 @@ export const navLinks = [
   { label: "Conversations", href: "/#conversations" },
   { label: "Voices", href: "/voices" },
   { label: "Agenda", href: "/agenda" },
-  { label: "SAMMIE Journey", href: "/sammiejourney" },
+  { label: "The Ecosystem", href: "/ecosystem" },
   { label: "Partners", href: "/partners" },
   { label: "Gallery", href: "/gallery" },
   { label: "Contact", href: "/contact" },

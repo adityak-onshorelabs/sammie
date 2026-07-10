@@ -3,9 +3,11 @@
 import { motion } from "framer-motion";
 import { CalendarDays, Clock } from "lucide-react";
 import Button from "@/components/ui/Button";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import { event } from "@/data/event";
 import { easeOutExpo } from "@/lib/motion";
+
+const HERO_IMAGE =
+  "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/Social%20Samosa/SAMMIE/hero_image";
 
 // Cinematic line-mask reveal: each line rises out of an overflow-hidden clip.
 const lineWrap = "block overflow-hidden";
@@ -29,29 +31,35 @@ const fade = {
 export default function Hero() {
   return (
     <section className="relative min-h-dvh overflow-hidden bg-bg">
-      <AuroraBackground
-        variant="gold"
-        speed={0.7}
-        blobCount={6}
-        className="absolute inset-0 z-0"
-      />
-      {/* contrast overlays over the canvas */}
+      {/* hero image — right side, showing the speaker + screen; full width on mobile */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(to_right,var(--color-bg),transparent_70%)]"
+        className="absolute inset-y-0 right-0 z-0 w-full bg-cover bg-[left_center] bg-no-repeat lg:w-[62%]"
+        style={{ backgroundImage: `url('${HERO_IMAGE}')` }}
       />
+      {/* left-to-right scrim — dark text column blending into the image */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(to_right,var(--color-bg)_0%,var(--color-bg)_34%,transparent_66%)]"
+      />
+      {/* top black gradient — holds near-solid through the nav band so links stay legible */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-52 bg-[linear-gradient(to_bottom,var(--color-bg)_0%,var(--color-bg)_38%,transparent_100%)]"
+      />
+      {/* bottom black gradient */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-1/3 bg-[linear-gradient(to_top,var(--color-bg),transparent)]"
       />
 
-      <div className="relative z-10 mx-auto flex min-h-dvh max-w-7xl flex-col justify-center px-6 pb-24 pt-32">
+      <div className="relative z-10 flex min-h-dvh max-w-6xl flex-col justify-center pb-24 pr-0 pt-32 pl-6 sm:pl-10 xl:pl-16">
         <h1
-          className="display relative max-w-5xl text-text"
+          className="display relative max-w-none text-text"
           style={{ fontSize: "var(--text-hero)" }}
         >
           <span className={lineWrap}>
-            <motion.span custom={0} variants={line} initial="hidden" animate="show" className="block">
+            <motion.span custom={0} variants={line} initial="hidden" animate="show" className="block whitespace-nowrap">
               The Marketing
             </motion.span>
           </span>
@@ -61,13 +69,13 @@ export default function Hero() {
               variants={line}
               initial="hidden"
               animate="show"
-              className="block text-gold-metallic gold-shine"
+              className="block whitespace-nowrap text-gold-metallic gold-shine"
             >
               Pulse
             </motion.span>
           </span>
           <span className={lineWrap}>
-            <motion.span custom={2} variants={line} initial="hidden" animate="show" className="block">
+            <motion.span custom={2} variants={line} initial="hidden" animate="show" className="block whitespace-nowrap">
               Summit
             </motion.span>
           </span>

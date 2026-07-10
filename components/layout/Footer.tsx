@@ -41,20 +41,27 @@ export default function Footer() {
                     {c.label}
                   </span>
                   <div className="flex min-w-0 flex-col gap-1.5">
-                  <a
-                    href={`mailto:${c.email}`}
-                    className="flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-gold"
-                  >
-                    <Mail className="h-3.5 w-3.5 shrink-0" strokeWidth={1.75} />
-                    {c.email}
-                  </a>
-                  <a
-                    href={`tel:${c.phone.replace(/\s/g, "")}`}
-                    className="flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-gold"
-                  >
-                    <Phone className="h-3.5 w-3.5 shrink-0" strokeWidth={1.75} />
-                    {c.phone}
-                  </a>
+                  {c.people.map((person, pi) => (
+                    <div
+                      key={person.email}
+                      className={`flex flex-col gap-1.5 ${pi > 0 ? "mt-2 border-t border-line pt-2" : ""}`}
+                    >
+                      <a
+                        href={`mailto:${person.email}`}
+                        className="flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-gold"
+                      >
+                        <Mail className="h-3.5 w-3.5 shrink-0" strokeWidth={1.75} />
+                        {person.email}
+                      </a>
+                      <a
+                        href={`tel:${person.phone.replace(/\s/g, "")}`}
+                        className="flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-gold"
+                      >
+                        <Phone className="h-3.5 w-3.5 shrink-0" strokeWidth={1.75} />
+                        {person.phone}
+                      </a>
+                    </div>
+                  ))}
                   </div>
                 </div>
               ))}

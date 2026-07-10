@@ -15,23 +15,23 @@ const reasons = [
   {
     icon: Users,
     title: "Reach the Decision-Makers",
-    body: "Put your brand in front of India's CMOs, marketing leaders and founders in one room.",
+    body: "Connect with India's leading CMOs, Marketing Heads and business leaders in one room.",
   },
   {
     icon: Megaphone,
-    title: "Own the Conversation",
-    body: "Align with the topics defining the next chapter of marketing in India.",
+    title: "Join the Conversation",
+    body: "Align your brand with the ideas, debates and decisions driving modern marketing.",
   },
   {
     icon: Handshake,
-    title: "Build Real Relationships",
-    body: "Network beyond the stage with the people shaping modern marketing.",
+    title: "Build Lasting Connections",
+    body: "Network beyond the stage with the people leading brands, businesses and the industry.",
   },
 ];
 
 export default function Page() {
   const partnerEmail =
-    contacts.find((c) => c.label === "Partner")?.email ?? "info@socialsamosa.com";
+    contacts.find((c) => c.label === "Partner")?.people[0].email ?? "info@socialsamosa.com";
 
   return (
     <section className="mx-auto max-w-7xl px-6 pb-28 pt-36">
@@ -40,10 +40,10 @@ export default function Page() {
         <span className="kicker">Partners</span>
       </div>
       <h1 className="display max-w-3xl text-5xl text-text sm:text-7xl">
-        Partners &amp; Sponsors
+        Partners
       </h1>
       <p className="mt-6 max-w-xl text-base leading-relaxed text-text-muted">
-        The brands and platforms powering SAMMIE: The Marketing Pulse Summit.
+        The brands and platforms supporting The Marketing Pulse Summit.
       </p>
 
       {/* Logo grid */}
@@ -65,7 +65,7 @@ export default function Page() {
           <span className="kicker">Partner With Us</span>
         </div>
         <h2 className="display max-w-2xl text-3xl text-text sm:text-4xl">
-          Reach the Room That Matters
+          What&rsquo;s In It For Your Brand?
         </h2>
 
         <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3">
@@ -89,19 +89,20 @@ export default function Page() {
 
         <div className="mt-12">
           <CTABanner
-            title="Become a Partner"
+            title="Put Your Brand in the Right Room."
             href="/contact"
             cta="Get in Touch"
             body={
               <>
-                Write to us at{" "}
+                Explore sponsorship opportunities with The Marketing Pulse
+                Summit. Write to us at{" "}
                 <a
                   href={`mailto:${partnerEmail}`}
                   className="text-gold underline underline-offset-4"
                 >
                   {partnerEmail}
-                </a>{" "}
-                to explore partnership opportunities.
+                </a>
+                .
               </>
             }
           />
