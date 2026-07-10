@@ -92,7 +92,6 @@ export default function Page() {
               <span className="text-sm text-text-muted">
                 {event.date} &middot; {event.time}
               </span>
-              <span className="text-sm text-text-faint">{event.venue}</span>
             </div>
           </div>
         </div>

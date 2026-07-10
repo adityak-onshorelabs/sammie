@@ -66,7 +66,6 @@ export default function Page() {
                 icon: MapPin,
                 label: "Venue",
                 value: event.city,
-                sub: event.venue,
               },
             ].map((row) => (
               <li key={row.label} className="flex items-center gap-4 py-4 first:pt-0">
@@ -80,9 +79,6 @@ export default function Page() {
                   <span className="text-sm font-medium text-text">
                     {row.value}
                   </span>
-                  {row.sub && (
-                    <span className="text-xs text-text-faint">{row.sub}</span>
-                  )}
                 </span>
               </li>
             ))}

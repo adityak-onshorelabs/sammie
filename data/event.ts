@@ -9,7 +9,6 @@ export interface EventInfo {
   topics: string[];
   date: string;
   time: string;
-  venue: string;
   city: string;
   registerUrl: string;
 }
@@ -39,7 +38,6 @@ export const event: EventInfo = {
   ],
   date: "30 July 2026",
   time: "2 PM onwards",
-  venue: "Venue to be announced",
   city: "Mumbai, India",
   registerUrl:
     "https://zfrmz.in/q5OlyiNk8DQHrRvG8SMm?referrername=web",
