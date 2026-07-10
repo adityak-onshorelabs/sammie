@@ -50,9 +50,12 @@ export default function Intro({ children }: { children: React.ReactNode }) {
     }
     const onKey = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "R" || e.key === "r")) {
+        // Ctrl/Cmd+Shift+R always returns to home with the intro sequence.
         try {
           sessionStorage.setItem("introForce", "1");
         } catch {}
+        e.preventDefault();
+        window.location.assign("/");
       }
     };
     window.addEventListener("keydown", onKey);
