@@ -28,15 +28,33 @@ export default function SmoothScroll({
 
     const hash = window.location.hash;
     if (hash.length > 1) {
+      const id = hash.slice(1);
       let tries = 0;
       let raf = 0;
-      const go = () => {
-        const el = document.querySelector(hash);
-        if (el) lenis.scrollTo(el as HTMLElement, { offset: ANCHOR_OFFSET });
-        else if (tries++ < 30) raf = requestAnimationFrame(go);
+      const timers: ReturnType<typeof setTimeout>[] = [];
+
+      // Scroll once the target exists AND the sections above it have laid out —
+      // otherwise its offset is still too small and we land on an earlier
+      // section (e.g. Overview). resize() recomputes Lenis dimensions first.
+      const scrollToTarget = () => {
+        const el = document.getElementById(id);
+        if (!el) {
+          if (tries++ < 40) raf = requestAnimationFrame(scrollToTarget);
+          return;
+        }
+        lenis.resize();
+        lenis.scrollTo(el, { offset: ANCHOR_OFFSET });
+        // Re-correct after late layout shifts (fonts / images pushing content).
+        timers.push(setTimeout(() => lenis.scrollTo(el, { offset: ANCHOR_OFFSET }), 300));
       };
-      raf = requestAnimationFrame(go);
-      return () => cancelAnimationFrame(raf);
+
+      raf = requestAnimationFrame(scrollToTarget);
+      if (document.fonts?.ready) document.fonts.ready.then(scrollToTarget);
+
+      return () => {
+        cancelAnimationFrame(raf);
+        timers.forEach(clearTimeout);
+      };
     }
 
     lenis.stop();
