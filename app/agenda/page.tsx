@@ -46,9 +46,7 @@ export default function Page() {
         A Day of Ideas That Move Markets
       </h1>
       <p className="mt-6 max-w-xl text-base leading-relaxed text-text-muted">
-        One stage, a full day of the conversations shaping India&rsquo;s
-        marketing economy. Session speakers and stage details are announced
-        closer to the event.
+        Sessions Where Marketing&rsquo;s Biggest Questions Get Answered
       </p>
 
       <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm text-text-muted">

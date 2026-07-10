@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr_1.4fr]">
           <div className="flex flex-col gap-5">
-            <Logo />
+            <Logo imgClassName="h-28 w-auto" />
             <p className="max-w-xs text-sm leading-relaxed text-text-muted">
               {event.theme}. {event.tagline}
             </p>

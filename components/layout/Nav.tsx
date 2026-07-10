@@ -4,11 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import Logo from "./Logo";
 import Button from "@/components/ui/Button";
 import { navLinks } from "@/data/partners";
 import { event } from "@/data/event";
-import { easeOutExpo } from "@/lib/motion";
+import { easeOutExpo, staggerParent, fadeRiseChild } from "@/lib/motion";
 import { useIntro, chromeIn } from "./Intro";
 
 export default function Nav() {
@@ -115,30 +116,85 @@ export default function Nav() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.4, ease: easeOutExpo }}
-            className="border-b border-line bg-bg px-6 py-8 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: easeOutExpo }}
+            className="fixed inset-0 z-[60] flex flex-col bg-bg lg:hidden"
           >
-            <ul className="flex flex-col gap-5">
-              {navLinks.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    aria-current={isActive(l.href) ? "page" : undefined}
-                    className={`font-display text-2xl uppercase tracking-tight ${
-                      isActive(l.href) ? "text-gold" : "text-text"
-                    }`}
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 flex flex-col gap-4">
-              <Button href={event.registerUrl}>Register Now</Button>
+            {/* overlay top bar: logo + close */}
+            <div className="flex items-center justify-between border-b border-line px-6 py-5">
+              <Logo />
+              <button
+                onClick={() => setOpen(false)}
+                aria-label="Close menu"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-text transition-colors hover:border-gold hover:text-gold"
+              >
+                <span className="relative block h-4 w-4">
+                  <span className="absolute left-0 top-1/2 h-px w-4 -translate-y-1/2 rotate-45 bg-current" />
+                  <span className="absolute left-0 top-1/2 h-px w-4 -translate-y-1/2 -rotate-45 bg-current" />
+                </span>
+              </button>
+            </div>
+
+            {/* links */}
+            <motion.nav
+              variants={staggerParent}
+              initial="hidden"
+              animate="show"
+              className="flex-1 overflow-y-auto px-6 py-4"
+            >
+              <ul className="flex flex-col">
+                {navLinks.map((l, i) => {
+                  const active = isActive(l.href);
+                  return (
+                    <motion.li key={l.href} variants={fadeRiseChild}>
+                      <Link
+                        href={l.href}
+                        onClick={() => setOpen(false)}
+                        aria-current={active ? "page" : undefined}
+                        className="group flex items-center gap-4 border-b border-line/60 py-4"
+                      >
+                        <span
+                          className={`w-7 font-display text-xs tabular-nums ${
+                            active ? "text-gold" : "text-text-faint"
+                          }`}
+                        >
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span
+                          className={`display flex-1 text-3xl transition-colors ${
+                            active ? "text-gold" : "text-text group-hover:text-gold"
+                          }`}
+                        >
+                          {l.label}
+                        </span>
+                        <ArrowUpRight
+                          className={`h-5 w-5 shrink-0 transition-all duration-300 ${
+                            active
+                              ? "text-gold"
+                              : "-translate-x-1 text-text-faint opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
+                          }`}
+                          strokeWidth={1.75}
+                        />
+                      </Link>
+                    </motion.li>
+                  );
+                })}
+              </ul>
+            </motion.nav>
+
+            {/* footer */}
+            <div className="border-t border-line px-6 py-6">
+              <div className="grid [&>div]:w-full">
+                <Button href={event.registerUrl} className="w-full justify-center">
+                  Register Now
+                </Button>
+              </div>
+              <div className="mt-5 flex items-center justify-between text-[0.7rem] uppercase tracking-[0.18em] text-text-faint">
+                <span>{event.edition}</span>
+                <span>{event.date}</span>
+              </div>
             </div>
           </motion.div>
         )}
