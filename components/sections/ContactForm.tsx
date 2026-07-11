@@ -63,6 +63,7 @@ export default function ContactForm() {
     const payload = {
       name: String(data.get("name") ?? ""),
       email: String(data.get("email") ?? ""),
+      phone: String(data.get("phone") ?? ""),
       company: String(data.get("company") ?? ""),
       type: enquiryType,
       message: String(data.get("message") ?? ""),
@@ -123,10 +124,25 @@ export default function ContactForm() {
           <input id="company" name="company" required placeholder="Company / Brand" className={field} />
         </div>
         <div>
-          <span className={label}>
-            Enquiry Type<Req />
-          </span>
-          <div ref={typeRef} className="relative">
+          <label htmlFor="phone" className={label}>
+            Phone<Req />
+          </label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            required
+            placeholder="+91 98765 43210"
+            className={field}
+          />
+        </div>
+      </div>
+
+      <div>
+        <span className={label}>
+          Enquiry Type<Req />
+        </span>
+        <div ref={typeRef} className="relative">
             <button
               type="button"
               onClick={() => setTypeOpen((o) => !o)}
@@ -192,7 +208,6 @@ export default function ContactForm() {
             </AnimatePresence>
           </div>
         </div>
-      </div>
 
       <div>
         <label htmlFor="message" className={label}>

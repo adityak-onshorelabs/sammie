@@ -57,6 +57,7 @@ function shell(title: string, bodyHtml: string): string {
 function renderNotification(f: {
   name: string;
   email: string;
+  phone: string;
   company: string;
   type: string;
   message: string;
@@ -71,6 +72,7 @@ function renderNotification(f: {
     <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
       ${row("Name", escapeHtml(f.name))}
       ${row("Email", `<a href="mailto:${escapeHtml(f.email)}" style="color:#c9a24a;text-decoration:none">${escapeHtml(f.email)}</a>`)}
+      ${f.phone ? row("Phone", `<a href="tel:${escapeHtml(f.phone)}" style="color:#1a1a1a;text-decoration:none">${escapeHtml(f.phone)}</a>`) : ""}
       ${f.company ? row("Company", escapeHtml(f.company)) : ""}
       ${row("Enquiry", escapeHtml(f.type))}
     </table>
@@ -80,15 +82,16 @@ function renderNotification(f: {
 }
 
 // Acknowledgement to the person who filled the form.
-function renderAck(f: { name: string; type: string }): string {
+function renderAck(): string {
+  const p =
+    "margin:0 0 14px;color:#1a1a1a;font-size:15px;line-height:1.6";
   const body = `
-    <p style="margin:0 0 14px;color:#1a1a1a;font-size:15px;line-height:1.6">Hi ${escapeHtml(f.name)},</p>
-    <p style="margin:0 0 14px;color:#1a1a1a;font-size:15px;line-height:1.6">
-      Thanks for reaching out to <strong>The Marketing Pulse Summit</strong>. We&rsquo;ve received your ${escapeHtml(f.type.toLowerCase())} and the right person on our team will get back to you shortly.
-    </p>
-    <p style="margin:14px 0 0;color:#8a8a8a;font-size:13px;line-height:1.6">This is an automated confirmation — no need to reply.</p>`;
+    <p style="${p}">Thank you for your interest in SAMMIE – The Marketing Pulse Summit.</p>
+    <p style="${p}">Your enquiry has been successfully received. We appreciate you reaching out and will carefully review your submission. A member of our team will get in touch with you soon regarding your enquiry.</p>
+    <p style="${p}">Thank you once again, and we look forward to connecting with you.</p>
+    <p style="margin:14px 0 0;color:#1a1a1a;font-size:15px;line-height:1.6">Warm regards,<br/>Team Social Samosa</p>`;
 
-  return shell("Thanks — we’ve got your message", body);
+  return shell("We&rsquo;ve Received Your Enquiry", body);
 }
 
 export async function POST(request: Request) {
@@ -113,13 +116,14 @@ export async function POST(request: Request) {
 
   const name = String(body.name ?? "").trim();
   const email = String(body.email ?? "").trim();
+  const phone = String(body.phone ?? "").trim();
   const company = String(body.company ?? "").trim();
   const type = String(body.type ?? "Speaker and Event").trim();
   const message = String(body.message ?? "").trim();
 
-  if (!name || !email || !message) {
+  if (!name || !email || !phone || !message) {
     return NextResponse.json(
-      { ok: false, error: "Name, email and message are required." },
+      { ok: false, error: "Name, email, phone and message are required." },
       { status: 400 },
     );
   }
@@ -152,6 +156,7 @@ export async function POST(request: Request) {
   const notificationText = [
     `Name: ${name}`,
     `Email: ${email}`,
+    `Phone: ${phone}`,
     company ? `Company: ${company}` : null,
     `Enquiry: ${type}`,
     "",
@@ -168,7 +173,7 @@ export async function POST(request: Request) {
       replyTo: `${name} <${email}>`,
       subject: `[${type}] SAMMIE Summit enquiry from ${name}`,
       text: notificationText,
-      html: renderNotification({ name, email, company, type, message }),
+      html: renderNotification({ name, email, phone, company, type, message }),
     });
   } catch (err) {
     console.error("contact: notification sendMail failed", err);
@@ -181,12 +186,13 @@ export async function POST(request: Request) {
   // 2) Acknowledge the sender — best-effort; don't fail the request if it bounces.
   try {
     await transporter.sendMail({
-      from,
+      from: `Social Samosa <${from}>`,
       to: `${name} <${email}>`,
       replyTo: to[0],
-      subject: "We received your enquiry — The Marketing Pulse Summit",
-      text: `Hi ${name},\n\nThanks for reaching out to The Marketing Pulse Summit. We've received your ${type.toLowerCase()} and the right person on our team will get back to you shortly.\n\nThis is an automated confirmation — no need to reply.`,
-      html: renderAck({ name, type }),
+      subject:
+        "We've Received Your Enquiry for SAMMIE - The Marketing Pulse Summit",
+      text: `Thank you for your interest in SAMMIE – The Marketing Pulse Summit.\n\nYour enquiry has been successfully received. We appreciate you reaching out and will carefully review your submission. A member of our team will get in touch with you soon regarding your enquiry.\n\nThank you once again, and we look forward to connecting with you.\n\nWarm regards,\nTeam Social Samosa`,
+      html: renderAck(),
     });
   } catch (err) {
     console.error("contact: acknowledgement sendMail failed", err);
