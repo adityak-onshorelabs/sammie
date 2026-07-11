@@ -4,7 +4,7 @@ import Overview from "@/components/sections/Overview";
 import Conversations from "@/components/sections/Conversations";
 import Jury from "@/components/sections/Jury";
 import Agenda from "@/components/sections/Agenda";
-import PastEditions from "@/components/sections/PastEditions";
+import Ecosystem from "@/components/sections/Ecosystem";
 import Partners from "@/components/sections/Partners";
 import RegisterCTA from "@/components/sections/RegisterCTA";
 
@@ -17,7 +17,7 @@ export default function Home() {
       <Conversations />
       <Jury />
       <Agenda />
-      <PastEditions />
+      <Ecosystem />
       <Partners />
       <RegisterCTA />
     </>

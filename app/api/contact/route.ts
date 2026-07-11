@@ -10,20 +10,15 @@ const MAIL_LOGO_URL =
   process.env.MAIL_LOGO_URL?.trim() ||
   "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/Social%20Samosa/SAMMIE/Logo/marketing-pulse-white.png";
 
-// Enquiry type (from ContactForm) -> who receives it.
-const routeRecipients: Record<string, string[]> = {
-  "General Enquiry": ["tirtha@socialsamosa.com"],
-  "Partnership Enquiry": ["rhea@socialsamosa.com"],
-  Registration: ["ali@socialsamosa.com", "kunal@socialsamosa.com"],
-  "Speaker Enquiry": ["ali@socialsamosa.com", "kunal@socialsamosa.com"],
-};
+// Every enquiry, regardless of type, goes to this single inbox.
+const CONTACT_TO = "events@socialsamosa.com";
 
-function recipientsFor(type: string): string[] {
-  // Testing override: when set, every enquiry goes here instead of the real recipients.
+function recipientsFor(_type: string): string[] {
+  // Testing override: when set, every enquiry goes here instead of the real recipient.
   const testTo = process.env.CONTACT_TEST_TO?.trim();
   if (testTo) return [testTo];
 
-  return routeRecipients[type] ?? routeRecipients["General Enquiry"];
+  return [CONTACT_TO];
 }
 
 function escapeHtml(s: string): string {
@@ -119,7 +114,7 @@ export async function POST(request: Request) {
   const name = String(body.name ?? "").trim();
   const email = String(body.email ?? "").trim();
   const company = String(body.company ?? "").trim();
-  const type = String(body.type ?? "General Enquiry").trim();
+  const type = String(body.type ?? "Speaker and Event").trim();
   const message = String(body.message ?? "").trim();
 
   if (!name || !email || !message) {
