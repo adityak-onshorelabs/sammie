@@ -36,7 +36,7 @@ export const contacts: Contact[] = [
   },
   {
     label: "Partner",
-    people: [{ email: "business@socialsamosa.com", phone: "+91 97694 56104" }],
+    people: [{ email: "business@socialsamosa.com", phone: "+91 77108 30559" }],
   },
   {
     label: "General",

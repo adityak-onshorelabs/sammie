@@ -19,7 +19,7 @@ const channelIcon: Record<string, LucideIcon> = {
 const channelTitle: Record<string, string> = {
   Attend: "Attend & Registration",
   Partner: "Partnerships",
-  General: "Speaker and Event",
+  General: "Speaker and General Queries",
 };
 
 export default function Page() {

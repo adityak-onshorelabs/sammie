@@ -118,7 +118,7 @@ export async function POST(request: Request) {
   const email = String(body.email ?? "").trim();
   const phone = String(body.phone ?? "").trim();
   const company = String(body.company ?? "").trim();
-  const type = String(body.type ?? "Speaker and Event").trim();
+  const type = String(body.type ?? "Speaker and General Queries").trim();
   const message = String(body.message ?? "").trim();
 
   if (!name || !email || !phone || !message) {

@@ -6,7 +6,7 @@ import { Send, ChevronDown, Check } from "lucide-react";
 import { easeOutExpo } from "@/lib/motion";
 
 const ENQUIRY_TYPES = [
-  "Speaker and Event",
+  "Speaker and General Queries",
   "Partnership Enquiry",
   "Registration",
 ];
