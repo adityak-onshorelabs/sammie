@@ -24,13 +24,13 @@ export const platforms: Platform[] = [
     blurb:
       "A platform for brands to prepare for India's biggest season of culture, commerce and consumption.",
     icon: Sparkles,
-    logo: `${IK}/IMG_9808.PNG`,
+    logo: `${IK}/fmc.png`,
   },
   {
     name: "AgencyCon",
     blurb:
       "A convention for agency leaders navigating the forces redefining the business of agencies.",
     icon: Users,
-    logo: `${IK}/IMG_9807.JPEG`,
+    logo: `${IK}/agencycon.png`,
   },
 ];
