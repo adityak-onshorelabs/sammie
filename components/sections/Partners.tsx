@@ -4,7 +4,15 @@ import PartnerLogo from "@/components/ui/PartnerLogo";
 import { partners } from "@/data/partners";
 
 export default function Partners() {
-  const logos = partners.map((p) => <PartnerLogo key={p.name} partner={p} />);
+  // Each mark sits on its own white pill so the full-colour logos read on dark.
+  const logos = partners.map((p) => (
+    <div
+      key={p.name}
+      className="flex h-20 w-44 items-center justify-center rounded-xl bg-white px-6"
+    >
+      <PartnerLogo partner={p} />
+    </div>
+  ));
 
   return (
     <section className="border-t border-line py-20">

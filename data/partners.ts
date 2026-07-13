@@ -4,16 +4,16 @@ export interface Partner {
   logo?: string;
 }
 
+// Real partner brand marks in full colour. Some are JPEGs on solid backgrounds
+// (yellow, white), so they render on white chips — see PartnerLogo.
+const IK = "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/Social%20Samosa/SAMMIE/Logo";
+
 export const partners: Partner[] = [
-  { name: "Meta", logo: "/partners/meta.svg" },
-  { name: "Google", logo: "/partners/google.svg" },
-  { name: "LinkedIn", logo: "/partners/linkedin.png" },
-  // Wordmark inverts to a solid blob; use the clean built-in play glyph instead.
-  { name: "YouTube" },
-  { name: "Amazon Ads", logo: "/partners/amazon-ads.png" },
-  // X ships a white glyph that vanishes on the light chip; use the built-in black mark.
-  { name: "X" },
-  { name: "Zerodha", logo: "/partners/zerodha.svg" },
+  { name: "Skin Deli", logo: `${IK}/Skin%20Deli.JPG.jpeg` },
+  // Original PNG exceeds ImageKit's 25MP limit (raw URL 400s); ?tr resizes it.
+  { name: "Fabelle", logo: `${IK}/Fabelle%20Brand%20Logo%20for%20Digital%20Use.png?tr=w-600` },
+  { name: "The Curl Co", logo: `${IK}/curlco.jpeg` },
+  { name: "BRND.ME", logo: `${IK}/BRND.ME%20-%20Logo.png` },
 ];
 
 export interface ContactPerson {

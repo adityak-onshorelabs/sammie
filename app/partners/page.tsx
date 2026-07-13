@@ -46,16 +46,15 @@ export default function Page() {
         The brands and platforms supporting The Marketing Pulse Summit.
       </p>
 
-      {/* Logo grid */}
-      <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3">
-        {partners.map((p) => (
-          <div
-            key={p.name}
-            className="flex h-32 items-center justify-center rounded-2xl border border-line bg-bg-raised transition-colors duration-300 hover:border-gold/40 hover:bg-bg"
-          >
-            <PartnerLogo partner={p} />
-          </div>
-        ))}
+      {/* Logo band — one white panel; full-colour marks read cleanly on light */}
+      <div className="mt-14 overflow-hidden rounded-2xl border border-line bg-white">
+        <div className="flex flex-wrap items-center justify-around gap-x-10 gap-y-12 px-8 py-14 sm:px-14">
+          {partners.map((p) => (
+            <div key={p.name} className="flex items-center justify-center">
+              <PartnerLogo partner={p} />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Why partner */}
