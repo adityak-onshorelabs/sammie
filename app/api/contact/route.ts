@@ -95,7 +95,7 @@ function renderAck(): string {
 }
 
 export async function POST(request: Request) {
-  const { SMTP_USER, SMTP_PASS, MAIL_FROM } = process.env;
+  const { SMTP_USER, SMTP_PASS, MAIL_FROM, ACK_FROM } = process.env;
   if (!SMTP_USER || !SMTP_PASS) {
     console.error("contact: SMTP_USER / SMTP_PASS not configured");
     return NextResponse.json(
@@ -152,6 +152,11 @@ export async function POST(request: Request) {
   });
 
   const from = MAIL_FROM || SMTP_USER;
+  // Acknowledgement "From". We authenticate as SMTP_USER but want the ack to appear
+  // from team@socialsamosa.com. That address cannot have its own app password, so it
+  // must be added as a verified "Send mail as" alias in the SMTP_USER Gmail account —
+  // otherwise Gmail rewrites this back to SMTP_USER. Defaults to team@socialsamosa.com.
+  const ackFrom = ACK_FROM || "team@socialsamosa.com";
 
   const notificationText = [
     `Name: ${name}`,
@@ -186,9 +191,9 @@ export async function POST(request: Request) {
   // 2) Acknowledge the sender — best-effort; don't fail the request if it bounces.
   try {
     await transporter.sendMail({
-      from: `Social Samosa <${from}>`,
+      from: `Social Samosa <${ackFrom}>`,
       to: `${name} <${email}>`,
-      replyTo: to[0],
+      replyTo: ackFrom,
       subject:
         "We've Received Your Enquiry for SAMMIE - The Marketing Pulse Summit",
       text: `Thank you for your interest in SAMMIE – The Marketing Pulse Summit.\n\nYour enquiry has been successfully received. We appreciate you reaching out and will carefully review your submission. A member of our team will get in touch with you soon regarding your enquiry.\n\nThank you once again, and we look forward to connecting with you.\n\nWarm regards,\nTeam Social Samosa`,
