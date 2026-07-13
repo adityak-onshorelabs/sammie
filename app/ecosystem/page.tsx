@@ -1,9 +1,9 @@
 import GoldRule from "@/components/ui/GoldRule";
 import Button from "@/components/ui/Button";
 import ContactForm from "@/components/sections/ContactForm";
-import { PhotoTile, VideoCard } from "@/components/ui/GalleryMedia";
+import { PhotoTile } from "@/components/ui/GalleryMedia";
 import { platforms } from "@/data/ecosystem";
-import { photos, videos } from "@/data/gallery";
+import { photos } from "@/data/gallery";
 
 export const metadata = {
   title: "The Ecosystem — The Marketing Pulse Summit",
@@ -67,13 +67,6 @@ export default function Page() {
               photo={{ ...p, size: undefined }}
               className="aspect-[4/3]"
             />
-          ))}
-        </div>
-
-        {/* Videos */}
-        <div className="mt-4 grid gap-6 sm:grid-cols-3">
-          {videos.map((v) => (
-            <VideoCard key={v.id} video={v} />
           ))}
         </div>
       </div>
