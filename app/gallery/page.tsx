@@ -1,16 +1,12 @@
 import GoldRule from "@/components/ui/GoldRule";
-import { PhotoTile, VideoCard } from "@/components/ui/GalleryMedia";
+import { VideoCard } from "@/components/ui/GalleryMedia";
+import PhotoGallery from "@/components/ui/PhotoGallery";
 import { photos, videos } from "@/data/gallery";
 
 export const metadata = {
   title: "Gallery — The Marketing Pulse Summit",
   description:
     "Photos and videos from SAMMIE: The Marketing Pulse Summit.",
-};
-
-const sizeClass: Record<string, string> = {
-  tall: "row-span-2",
-  wide: "sm:col-span-2",
 };
 
 export default function Page() {
@@ -34,15 +30,7 @@ export default function Page() {
           <GoldRule width="2rem" />
           <span className="kicker">Photo Gallery</span>
         </div>
-        <div className="grid auto-rows-[180px] grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {photos.map((p) => (
-            <PhotoTile
-              key={p.id}
-              photo={p}
-              className={p.size ? sizeClass[p.size] : ""}
-            />
-          ))}
-        </div>
+        <PhotoGallery photos={photos} />
       </div>
 
       {/* Video gallery */}
