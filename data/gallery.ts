@@ -12,6 +12,12 @@ export interface GalleryVideo {
   title: string;
   /** YouTube video id; renders an embed when set, a play-placeholder otherwise. */
   youtubeId?: string;
+  /** Self-hosted video URL (e.g. an ImageKit .mp4); alternative to youtubeId. */
+  src?: string;
+  /** Portrait (9:16) clip such as a YouTube Short; renders a taller, narrower frame. */
+  vertical?: boolean;
+  /** Custom poster image. Falls back to the YouTube / ImageKit thumbnail when omitted. */
+  poster?: string;
 }
 
 export interface Highlight {
@@ -37,9 +43,13 @@ export const photos: GalleryPhoto[] = [
 ];
 
 export const videos: GalleryVideo[] = [
-  { id: "v1", title: "6th Edition Highlights" },
-  { id: "v2", title: "Opening Keynote" },
-  { id: "v3", title: "Panel: Brand vs Performance" },
+  { id: "v1", title: "6th Edition Highlights", youtubeId: "TqjePH5_h5A" },
+  {
+    id: "v2",
+    title: "Summit Reel",
+    vertical: true,
+    src: `${GALLERY_IK}/Video-499.mp4`,
+  },
 ];
 
 export const highlights: Highlight[] = [

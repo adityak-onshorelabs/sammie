@@ -1,5 +1,5 @@
 import GoldRule from "@/components/ui/GoldRule";
-import { VideoCard } from "@/components/ui/GalleryMedia";
+import VideoCard from "@/components/ui/VideoCard";
 import PhotoGallery from "@/components/ui/PhotoGallery";
 import { photos, videos } from "@/data/gallery";
 
@@ -39,9 +39,11 @@ export default function Page() {
           <GoldRule width="2rem" />
           <span className="kicker">Video Gallery</span>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
           {videos.map((v) => (
-            <VideoCard key={v.id} video={v} />
+            <div key={v.id} className={v.vertical ? "sm:w-72 sm:shrink-0" : "sm:flex-1"}>
+              <VideoCard video={v} />
+            </div>
           ))}
         </div>
       </div>

@@ -1,5 +1,5 @@
-import { ImageIcon, Play } from "lucide-react";
-import type { GalleryPhoto, GalleryVideo } from "@/data/gallery";
+import { ImageIcon } from "lucide-react";
+import type { GalleryPhoto } from "@/data/gallery";
 
 const placeholderBg =
   "radial-gradient(110% 100% at 100% 0%, oklch(0.3 0.08 70 / 0.55), oklch(0.14 0.008 85))";
@@ -43,34 +43,4 @@ export function PhotoTile({
   );
 }
 
-export function VideoCard({ video }: { video: GalleryVideo }) {
-  return (
-    <div className="group overflow-hidden rounded-2xl border border-line">
-      <div className="relative aspect-video">
-        {video.youtubeId ? (
-          <iframe
-            className="absolute inset-0 h-full w-full"
-            src={`https://www.youtube.com/embed/${video.youtubeId}`}
-            title={video.title}
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        ) : (
-          <div
-            aria-hidden
-            className="flex h-full w-full items-center justify-center"
-            style={{ background: placeholderBg }}
-          >
-            <span className="flex h-14 w-14 items-center justify-center rounded-full border border-gold text-gold transition-all duration-300 group-hover:bg-gold group-hover:text-bg">
-              <Play className="ml-0.5 h-5 w-5 fill-current" strokeWidth={0} />
-            </span>
-          </div>
-        )}
-      </div>
-      <p className="border-t border-line p-4 text-sm font-medium text-text">
-        {video.title}
-      </p>
-    </div>
-  );
-}
+export { placeholderBg };
