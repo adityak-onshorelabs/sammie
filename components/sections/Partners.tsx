@@ -8,7 +8,7 @@ export default function Partners() {
   const logos = partners.map((p) => (
     <div
       key={p.name}
-      className="flex h-20 w-44 items-center justify-center rounded-xl bg-white px-6"
+      className="flex h-28 w-52 items-center justify-center rounded-xl bg-white px-6"
     >
       <PartnerLogo partner={p} />
     </div>

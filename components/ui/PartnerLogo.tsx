@@ -18,7 +18,7 @@ export default function PartnerLogo({ partner }: { partner: Partner }) {
     <img
       src={partner.logo}
       alt={`${partner.name} logo`}
-      className="max-h-14 w-auto max-w-[150px] object-contain"
+      className="max-h-20 w-auto max-w-[200px] object-contain"
     />
   );
 }
