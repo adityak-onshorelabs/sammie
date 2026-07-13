@@ -13,13 +13,13 @@ export const metadata = {
 const channelIcon: Record<string, LucideIcon> = {
   Attend: Ticket,
   Partner: Handshake,
-  General: MessageSquare,
+  "Speaker and General": MessageSquare,
 };
 
 const channelTitle: Record<string, string> = {
   Attend: "Attend & Registration",
   Partner: "Partnerships",
-  General: "Speaker and General Queries",
+  "Speaker and General": "Speaker and General Queries",
 };
 
 export default function Page() {

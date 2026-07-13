@@ -39,7 +39,7 @@ export const contacts: Contact[] = [
     people: [{ email: "business@socialsamosa.com", phone: "+91 77108 30559" }],
   },
   {
-    label: "General",
+    label: "Speaker and General",
     people: [{ email: "tirtha@socialsamosa.com", phone: "+91 99752 31383" }],
   },
 ];
