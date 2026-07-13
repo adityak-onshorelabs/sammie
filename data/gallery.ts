@@ -37,7 +37,7 @@ export const photos: GalleryPhoto[] = [
 ];
 
 export const videos: GalleryVideo[] = [
-  { id: "v1", title: "2025 Edition Highlights" },
+  { id: "v1", title: "6th Edition Highlights" },
   { id: "v2", title: "Opening Keynote" },
   { id: "v3", title: "Panel: Brand vs Performance" },
 ];
