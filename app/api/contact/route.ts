@@ -152,11 +152,9 @@ export async function POST(request: Request) {
   });
 
   const from = MAIL_FROM || SMTP_USER;
-  // Acknowledgement "From". We authenticate as SMTP_USER but want the ack to appear
-  // from team@socialsamosa.com. That address cannot have its own app password, so it
-  // must be added as a verified "Send mail as" alias in the SMTP_USER Gmail account —
-  // otherwise Gmail rewrites this back to SMTP_USER. Defaults to team@socialsamosa.com.
-  const ackFrom = ACK_FROM || "team@socialsamosa.com";
+  // Acknowledgement "From". Sent from the same authenticated Gmail account, so no
+  // "Send mail as" alias is needed. Defaults to the SMTP sender.
+  const ackFrom = ACK_FROM || MAIL_FROM || SMTP_USER;
 
   const notificationText = [
     `Name: ${name}`,
