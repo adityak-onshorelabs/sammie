@@ -91,7 +91,7 @@ function renderAck(): string {
     <p style="${p}">Thank you once again, and we look forward to connecting with you.</p>
     <p style="margin:14px 0 0;color:#1a1a1a;font-size:15px;line-height:1.6">Warm regards,<br/>Team Social Samosa</p>`;
 
-  return shell("We&rsquo;ve Received Your Enquiry", body);
+  return shell("We’ve Received Your Enquiry", body);
 }
 
 export async function POST(request: Request) {
