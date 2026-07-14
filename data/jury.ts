@@ -8,71 +8,30 @@ export interface JuryMember {
 }
 
 const IK =
-  "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/Social%20Samosa/SAMMIE/Sammie%202026%20jury";
+  "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/Social%20Samosa/SAMMIE/Speakers";
 // Fill the 4:5 card (center crop, no padding, no face-zoom).
 const TR = "?tr=w-700,h-875";
 
 export const jury: JuryMember[] = [
   {
-    id: "amaresh-godbole",
-    name: "Amaresh Godbole",
-    role: "CEO, PDX India & Chief, AI Experiences & Solutions",
-    company: "Publicis Groupe India",
-    photo: `${IK}/Amaresh.jpeg${TR}`,
+    id: "shalini-rao",
+    name: "Shalini Rao",
+    role: "Chief Marketing Officer",
+    company: "BIAL",
+    photo: `${IK}/Shalini%20Rao,%20Chief%20Marketing%20Officer,%20BIAL.jpeg${TR}`,
   },
   {
-    id: "anuya-jakatdar",
-    name: "Anuya Jakatdar",
-    role: "Co-founder & Chief Creative Officer",
-    company: "Bare Bones Collective",
-    photo: `${IK}/Anuya.jpeg${TR}`,
+    id: "sidharth-shakdher",
+    name: "Sidharth Shakdher",
+    role: "CMO & Business Head",
+    company: "Paytm",
+    photo: `${IK}/CMO%20&%20Business%20Head,Paytm.jpeg${TR}`,
   },
   {
-    id: "chandni-shah",
-    name: "Chandni Shah",
-    role: "CEO",
-    company: "Kinnect & 22feet Tribal",
-  },
-  {
-    id: "harshil-karia",
-    name: "Harshil Karia",
-    role: "Founder & CEO",
-    company: "Schbang",
-    photo: `${IK}/Harshil.jpg${TR}`,
-  },
-  {
-    id: "manoti-jain",
-    name: "Manoti Jain",
-    role: "COO & Founding Partner",
-    company: "Kulfi Collective",
-    photo: `${IK}/Manoti%20Jain%20Kulfi%20Collective%20(1).jpg${TR}`,
-  },
-  {
-    id: "niraj-ruparel",
-    name: "Niraj Ruparel",
-    role: "Creative Tech Maverick",
-    company: "WPP India",
-    photo: `${IK}/Niraj.jpg${TR}`,
-  },
-  {
-    id: "sonia-khurana",
-    name: "Sonia Khurana",
-    role: "Founder",
-    company: "SuperStuff.ai",
-  },
-  {
-    id: "viren-noronha",
-    name: "Viren Noronha",
-    role: "Co-founder",
-    company: "The New Thing",
-    photo: `${IK}/TNT-Viren-Profile.jpeg${TR}`,
-  },
-  {
-    // Title matched to the brochure speakers listing.
-    id: "amit-wadhwa",
-    name: "Amit Wadhwa",
-    role: "CEO",
-    company: "dentsu Creative India",
-    // Provided image URL 404s (commas/& in filename); add a clean URL to enable.
+    id: "prasun-kumar",
+    name: "Prasun Kumar",
+    role: "CMO & Business Head",
+    company: "Magicbricks",
+    photo: `${IK}/Prasun%20Kumar,%20CMO%20&%20Business%20Head,%20Magicbricks.jpeg${TR}`,
   },
 ];
