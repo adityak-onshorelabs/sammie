@@ -72,10 +72,36 @@ export default function Intro({ children }: { children: React.ReactNode }) {
       setReveal(true);
     };
 
+    // The shield (#intro-shield) blocks ALL pointer input until data-intro="0",
+    // and finish() is the only thing that flips it. requestAnimationFrame is
+    // fully paused in background/frozen tabs and dropped on bfcache restore, so
+    // if the loader's rAF drives the only path to finish(), a tab opened in the
+    // background (or frozen mid-intro) strands the shield and swallows every
+    // click until a reload. These guarantee dismissal regardless of rAF:
+    //  - a wall-clock cap (setTimeout still fires in background, only throttled)
+    //  - any visibility change (a tab-switch means skip the intro nicety)
+    //  - bfcache restore (pageshow.persisted)
+    const HARD_CAP = 2600; // must exceed the animated sequence below (~1.9s)
+    const cap = setTimeout(finish, HARD_CAP);
+    const onVis = () => finish();
+    const onShow = (e: PageTransitionEvent) => {
+      if (e.persisted) finish();
+    };
+    document.addEventListener("visibilitychange", onVis);
+    window.addEventListener("pageshow", onShow);
+    const clearSafeties = () => {
+      clearTimeout(cap);
+      document.removeEventListener("visibilitychange", onVis);
+      window.removeEventListener("pageshow", onShow);
+    };
+
     if (reduced) {
       setPct(100);
       const t = setTimeout(finish, 350);
-      return () => clearTimeout(t);
+      return () => {
+        clearTimeout(t);
+        clearSafeties();
+      };
     }
 
     let raf = 0;
@@ -89,7 +115,10 @@ export default function Intro({ children }: { children: React.ReactNode }) {
       else setTimeout(finish, 400);
     };
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearSafeties();
+    };
   }, [intro, reduced, reveal]);
 
   // Lock scroll while the loader covers the screen.
@@ -111,7 +140,7 @@ export default function Intro({ children }: { children: React.ReactNode }) {
         {showLoader && (
           <motion.div
             key="loader"
-            className="fixed inset-0 z-[100] flex flex-col overflow-hidden bg-bg"
+            className="pointer-events-none fixed inset-0 z-[100] flex flex-col overflow-hidden bg-bg"
             initial={{ opacity: 1 }}
             exit={{ y: "-100%" }}
             transition={{ duration: 0.9, ease: easeOutExpo }}
