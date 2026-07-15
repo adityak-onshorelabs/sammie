@@ -151,7 +151,10 @@ export async function POST(request: Request) {
     auth: { user: SMTP_USER, pass: SMTP_PASS },
   });
 
-  const from = MAIL_FROM || SMTP_USER;
+  const fromAddr = MAIL_FROM || SMTP_USER;
+  // Display name kept honest: it matches the actual Gmail sender rather than
+  // borrowing a brand the address doesn't own, which trips phishing heuristics.
+  const from = `SAMMIE Notifications <${fromAddr}>`;
   // Acknowledgement "From". Sent from the same authenticated Gmail account, so no
   // "Send mail as" alias is needed. Defaults to the SMTP sender.
   const ackFrom = ACK_FROM || MAIL_FROM || SMTP_USER;
@@ -189,7 +192,7 @@ export async function POST(request: Request) {
   // 2) Acknowledge the sender — best-effort; don't fail the request if it bounces.
   try {
     await transporter.sendMail({
-      from: `Social Samosa <${ackFrom}>`,
+      from: `SAMMIE Notifications <${ackFrom}>`,
       to: `${name} <${email}>`,
       replyTo: ackFrom,
       subject:
