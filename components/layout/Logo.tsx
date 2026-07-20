@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLenis } from "lenis/react";
+import { useMicrosite } from "./MicrositeProvider";
 
 export default function Logo({
   className = "",
@@ -14,10 +15,12 @@ export default function Logo({
 }) {
   const pathname = usePathname();
   const lenis = useLenis();
+  const { site, base } = useMicrosite();
 
   const onClick = (e: React.MouseEvent) => {
-    // Already home: no route change fires, so scroll to top through Lenis.
-    if (pathname === "/") {
+    // Already on this microsite's home: no route change fires, so scroll to top
+    // through Lenis.
+    if (pathname === base) {
       e.preventDefault();
       if (lenis) lenis.scrollTo(0, { force: true });
       else window.scrollTo({ top: 0 });
@@ -26,14 +29,14 @@ export default function Logo({
 
   return (
     <Link
-      href="/"
+      href={base}
       onClick={onClick}
-      aria-label="The Marketing Pulse Summit — home"
+      aria-label={`${site.event.name} — home`}
       className={`inline-flex items-center ${className}`}
     >
       <Image
-        src="/logos/marketing-pulse-white.png"
-        alt="The Marketing Pulse Summit"
+        src={site.brand.logo}
+        alt={site.brand.logoAlt}
         width={526}
         height={278}
         priority

@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion, type Variants } from "framer-motion";
-import { event } from "@/data/event";
+import { useMicrosite } from "./MicrositeProvider";
 import { easeOutExpo } from "@/lib/motion";
 
 type IntroState = {
@@ -32,6 +32,8 @@ export const chromeIn: Variants = {
 
 export default function Intro({ children }: { children: React.ReactNode }) {
   const reduced = useReducedMotion();
+  const { site, base } = useMicrosite();
+  const { event } = site;
   const [intro, setIntro] = useState(false);
   const [reveal, setReveal] = useState(true);
   const [pct, setPct] = useState(0);
@@ -50,17 +52,18 @@ export default function Intro({ children }: { children: React.ReactNode }) {
     }
     const onKey = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "R" || e.key === "r")) {
-        // Ctrl/Cmd+Shift+R always returns to home with the intro sequence.
+        // Ctrl/Cmd+Shift+R always returns to this microsite's home with the
+        // intro sequence.
         try {
           sessionStorage.setItem("introForce", "1");
         } catch {}
         e.preventDefault();
-        window.location.assign("/");
+        window.location.assign(base);
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [base]);
 
   // Progress counter while the loader is up.
   useEffect(() => {
@@ -175,8 +178,8 @@ export default function Intro({ children }: { children: React.ReactNode }) {
                   transition={{ duration: 0.9, ease: easeOutExpo }}
                 >
                   <Image
-                    src="/logos/marketing-pulse-white.png"
-                    alt="The Marketing Pulse Summit"
+                    src={site.brand.logo}
+                    alt={site.brand.logoAlt}
                     width={526}
                     height={278}
                     priority

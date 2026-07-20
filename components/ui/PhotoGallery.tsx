@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { PhotoTile } from "@/components/ui/GalleryMedia";
-import type { GalleryPhoto } from "@/data/gallery";
+import type { GalleryPhoto } from "@/config/types";
 
 const sizeClass: Record<string, string> = {
   tall: "row-span-2",

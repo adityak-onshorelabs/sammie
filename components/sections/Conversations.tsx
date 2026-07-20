@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import {
   TrendingUp,
-  Globe,
+  Megaphone,
   ShoppingCart,
   Eye,
   Bot,
@@ -12,19 +12,23 @@ import {
 } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
-import { sessions } from "@/data/sessions";
+import type { SectionProps } from "./registry";
+import { useMicrosite } from "@/components/layout/MicrositeProvider";
 import { easeOutExpo } from "@/lib/motion";
 
 const topicIcon: Record<string, LucideIcon> = {
+  "when-truth": Megaphone,
   "reality-check": TrendingUp,
-  "culture-content-commerce": ShoppingCart,
-  "regional-internet": Globe,
-  "festivals-fandoms": MessageSquare,
-  "ai-muscle": Bot,
   "media-moves-markets": Eye,
+  "ai-muscle": Bot,
+  "festivals-fandoms": MessageSquare,
+  "culture-content-commerce": ShoppingCart,
 };
 
-export default function Conversations() {
+export default function Conversations({ site }: SectionProps) {
+  const sessions = site.content.sessions ?? [];
+  const { link } = useMicrosite();
+
   return (
     <section id="conversations" className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
       <SectionHeading
@@ -45,7 +49,7 @@ export default function Conversations() {
           return (
           <motion.a
             key={s.id}
-            href={`/agenda#${s.id}`}
+            href={link(`/agenda#${s.id}`)}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}

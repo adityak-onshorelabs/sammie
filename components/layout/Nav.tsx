@@ -7,16 +7,19 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Logo from "./Logo";
 import Button from "@/components/ui/Button";
-import { navLinks } from "@/data/partners";
-import { event } from "@/data/event";
 import { easeOutExpo, staggerParent, fadeRiseChild } from "@/lib/motion";
 import { useIntro, chromeIn } from "./Intro";
+import { useMicrosite } from "./MicrositeProvider";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const { intro, reveal } = useIntro();
+  const { site, base, link } = useMicrosite();
+  const { event } = site;
+  // Config stores hrefs relative to the microsite root; resolve them once here.
+  const navLinks = site.nav.map((l) => ({ ...l, href: link(l.href) }));
 
   // Entrance props for nav chrome. When this load isn't an intro load, elements
   // render statically (initial=false) with no animation.
@@ -30,7 +33,7 @@ export default function Nav() {
   const isActive = (href: string) => {
     // In-page anchors (e.g. "/#conversations") never take the active page state.
     if (href.includes("#")) return false;
-    return href === "/" ? pathname === "/" : pathname.startsWith(href);
+    return href === base ? pathname === base : pathname.startsWith(href);
   };
 
   useEffect(() => {

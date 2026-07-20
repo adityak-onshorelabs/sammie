@@ -1,11 +1,11 @@
 import Marquee from "@/components/ui/Marquee";
 import GoldRule from "@/components/ui/GoldRule";
 import PartnerLogo from "@/components/ui/PartnerLogo";
-import { partners } from "@/data/partners";
+import type { SectionProps } from "./registry";
 
-export default function Partners() {
+export default function Partners({ site }: SectionProps) {
   // Each mark sits on its own white pill so the full-colour logos read on dark.
-  const logos = partners.map((p) => (
+  const logos = (site.content.partners ?? []).map((p) => (
     <div
       key={p.name}
       className="flex h-28 w-52 items-center justify-center rounded-xl bg-white px-6"

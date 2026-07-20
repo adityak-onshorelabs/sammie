@@ -1,10 +1,17 @@
 import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
 import Logo from "./Logo";
-import { contacts, navLinks } from "@/data/partners";
-import { event } from "@/data/event";
+import type { MicrositeConfig } from "@/config/types";
+import { basePath, href } from "@/lib/microsite";
 
-export default function Footer() {
+// A server component, so the microsite arrives as a prop rather than through
+// the client-side MicrositeProvider context.
+export default function Footer({ site }: { site: MicrositeConfig }) {
+  const { event } = site;
+  const contacts = site.contact.channels;
+  const base = basePath(site);
+  const navLinks = site.nav.map((l) => ({ ...l, href: href(base, l.href) }));
+
   return (
     <footer className="border-t border-line bg-bg-sunken">
       <div className="mx-auto max-w-7xl px-6 py-16">

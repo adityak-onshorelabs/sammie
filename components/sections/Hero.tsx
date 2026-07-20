@@ -3,11 +3,8 @@
 import { motion } from "framer-motion";
 import { CalendarDays, Clock } from "lucide-react";
 import Button from "@/components/ui/Button";
-import { event } from "@/data/event";
+import type { SectionProps } from "./registry";
 import { easeOutExpo } from "@/lib/motion";
-
-const HERO_IMAGE =
-  "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/Social%20Samosa/SAMMIE/hero_image";
 
 // Cinematic line-mask reveal: each line rises out of an overflow-hidden clip.
 const lineWrap = "block overflow-hidden";
@@ -28,14 +25,17 @@ const fade = {
   }),
 };
 
-export default function Hero() {
+export default function Hero({ site }: SectionProps) {
+  const { event, brand } = site;
+  const accent = brand.heroAccentLine ?? -1;
+
   return (
     <section className="relative min-h-dvh overflow-hidden bg-bg">
       {/* hero image — right side, showing the speaker + screen; full width on mobile */}
       <div
         aria-hidden
         className="absolute inset-y-0 right-0 z-0 w-full bg-cover bg-[left_center] bg-no-repeat lg:w-[62%]"
-        style={{ backgroundImage: `url('${HERO_IMAGE}')` }}
+        style={{ backgroundImage: `url('${brand.heroImage ?? ""}')` }}
       />
       {/* left-to-right scrim — dark text column blending into the image */}
       <div
@@ -58,27 +58,21 @@ export default function Hero() {
           className="display relative max-w-none text-text"
           style={{ fontSize: "var(--text-hero)" }}
         >
-          <span className={lineWrap}>
-            <motion.span custom={0} variants={line} initial="hidden" animate="show" className="block whitespace-nowrap">
-              The Marketing
-            </motion.span>
-          </span>
-          <span className={lineWrap}>
-            <motion.span
-              custom={1}
-              variants={line}
-              initial="hidden"
-              animate="show"
-              className="block whitespace-nowrap text-gold-metallic gold-shine"
-            >
-              Pulse
-            </motion.span>
-          </span>
-          <span className={lineWrap}>
-            <motion.span custom={2} variants={line} initial="hidden" animate="show" className="block whitespace-nowrap">
-              Summit
-            </motion.span>
-          </span>
+          {brand.heroLines.map((text, i) => (
+            <span key={i} className={lineWrap}>
+              <motion.span
+                custom={i}
+                variants={line}
+                initial="hidden"
+                animate="show"
+                className={`block whitespace-nowrap${
+                  i === accent ? " text-gold-metallic gold-shine" : ""
+                }`}
+              >
+                {text}
+              </motion.span>
+            </span>
+          ))}
         </h1>
 
         <motion.div

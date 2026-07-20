@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
+import { useSiteLink } from "@/components/layout/MicrositeProvider";
 
 type Variant = "gold" | "ghost";
 
@@ -36,6 +37,9 @@ export default function Button({
 }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const reduced = useReducedMotion();
+  // Callers write microsite-relative hrefs ("/agenda"); the active microsite
+  // prefixes its slug here so no component has to know which event it is on.
+  const to = useSiteLink()(href);
   const external = /^https?:/.test(href);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -57,7 +61,7 @@ export default function Button({
     <motion.div style={{ x: sx, y: sy }} className="inline-block">
       <Link
         ref={ref}
-        href={href}
+        href={to}
         target={external ? "_blank" : undefined}
         rel={external ? "noopener noreferrer" : undefined}
         onMouseMove={onMove}

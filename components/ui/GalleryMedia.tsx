@@ -1,5 +1,5 @@
 import { ImageIcon } from "lucide-react";
-import type { GalleryPhoto } from "@/data/gallery";
+import type { GalleryPhoto } from "@/config/types";
 
 const placeholderBg =
   "radial-gradient(110% 100% at 100% 0%, oklch(0.3 0.08 70 / 0.55), oklch(0.14 0.008 85))";

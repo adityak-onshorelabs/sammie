@@ -1,9 +1,9 @@
 import GoldRule from "@/components/ui/GoldRule";
 import Reveal from "@/components/ui/Reveal";
-import { event } from "@/data/event";
+import type { SectionProps } from "./registry";
 
-export default function Overview() {
-  const [lead, ...rest] = event.overview;
+export default function Overview({ site }: SectionProps) {
+  const [lead, ...rest] = site.event.overview;
 
   return (
     <section

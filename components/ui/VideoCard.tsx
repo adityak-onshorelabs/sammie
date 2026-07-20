@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Play } from "lucide-react";
 import { placeholderBg } from "@/components/ui/GalleryMedia";
-import type { GalleryVideo } from "@/data/gallery";
+import type { GalleryVideo } from "@/config/types";
 
 // A lightweight YouTube facade: shows a branded poster + gold play button and
 // only mounts the (autoplaying) iframe once the viewer clicks. Falls back to the

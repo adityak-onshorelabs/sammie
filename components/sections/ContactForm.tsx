@@ -4,12 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, ChevronDown, Check } from "lucide-react";
 import { easeOutExpo } from "@/lib/motion";
-
-const ENQUIRY_TYPES = [
-  "Speaker and General Queries",
-  "Partnership Enquiry",
-  "Registration",
-];
+import { useMicrosite } from "@/components/layout/MicrositeProvider";
 
 const field =
   "w-full rounded-xl border border-line bg-bg-raised px-4 py-3 text-sm text-text placeholder:text-text-faint outline-none transition-colors focus:border-gold";
@@ -22,6 +17,8 @@ const Req = () => <span className="ml-0.5 text-gold">*</span>;
 type Status = "idle" | "sending" | "sent" | "error";
 
 export default function ContactForm() {
+  const { site } = useMicrosite();
+  const ENQUIRY_TYPES = site.contact.enquiryTypes;
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [enquiryType, setEnquiryType] = useState("");
@@ -67,6 +64,7 @@ export default function ContactForm() {
       company: String(data.get("company") ?? ""),
       type: enquiryType,
       message: String(data.get("message") ?? ""),
+      microsite: site.slug,
     };
 
     setStatus("sending");

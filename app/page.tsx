@@ -1,25 +1,10 @@
-import Hero from "@/components/sections/Hero";
-import Stats from "@/components/sections/Stats";
-import Overview from "@/components/sections/Overview";
-import Conversations from "@/components/sections/Conversations";
-import Jury from "@/components/sections/Jury";
-import Agenda from "@/components/sections/Agenda";
-import Ecosystem from "@/components/sections/Ecosystem";
-import Partners from "@/components/sections/Partners";
-import RegisterCTA from "@/components/sections/RegisterCTA";
+import { redirect } from "next/navigation";
+import { DEFAULT_MICROSITE } from "@/config/microsites";
 
-export default function Home() {
-  return (
-    <>
-      <Hero />
-      <Stats />
-      <Overview />
-      <Conversations />
-      <Jury />
-      <Agenda />
-      <Ecosystem />
-      <Partners />
-      <RegisterCTA />
-    </>
-  );
+// The platform root has no landing page of its own yet, so it forwards to the
+// one live microsite. Repoint it by changing DEFAULT_MICROSITE in
+// config/microsites.ts — or replace this file with a real directory page once
+// several events run at once.
+export default function RootPage() {
+  redirect(`/${DEFAULT_MICROSITE}`);
 }

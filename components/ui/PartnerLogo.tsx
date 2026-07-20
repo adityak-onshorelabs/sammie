@@ -1,4 +1,4 @@
-import type { Partner } from "@/data/partners";
+import type { Partner } from "@/config/types";
 
 // Renders a partner's brand mark in its original colours. The white surface is
 // supplied by the container (the white band on /partners, a white pill in the

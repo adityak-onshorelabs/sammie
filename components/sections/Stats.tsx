@@ -1,8 +1,10 @@
 import CountUp from "@/components/ui/CountUp";
 import Reveal from "@/components/ui/Reveal";
-import { stats } from "@/data/stats";
+import type { SectionProps } from "./registry";
 
-export default function Stats() {
+export default function Stats({ site }: SectionProps) {
+  const stats = site.content.stats ?? [];
+
   return (
     <section className="border-y border-line bg-bg-raised">
       <div className="mx-auto grid max-w-7xl grid-cols-1 divide-x divide-y divide-line sm:grid-cols-3 sm:divide-y-0">

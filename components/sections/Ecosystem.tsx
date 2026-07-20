@@ -3,10 +3,12 @@
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
-import { platforms } from "@/data/ecosystem";
+import type { SectionProps } from "./registry";
 import { easeOutExpo } from "@/lib/motion";
 
-export default function Ecosystem() {
+export default function Ecosystem({ site }: SectionProps) {
+  const platforms = site.content.platforms ?? [];
+
   return (
     <section className="border-t border-line bg-bg-sunken py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6">

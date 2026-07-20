@@ -9,7 +9,7 @@ import {
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
-import { agenda } from "@/data/agenda";
+import type { SectionProps } from "./registry";
 
 const kindIcon: Record<string, LucideIcon> = {
   keynote: Mic,
@@ -27,7 +27,9 @@ const kindColor: Record<string, string> = {
   networking: "text-text-faint",
 };
 
-export default function Agenda() {
+export default function Agenda({ site }: SectionProps) {
+  const agenda = site.content.agenda ?? [];
+
   return (
     <section className="border-t border-line bg-bg-raised py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-[0.9fr_1.1fr]">

@@ -4,10 +4,11 @@ import { useRef } from "react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import JuryCard from "@/components/ui/JuryCard";
-import { jury } from "@/data/jury";
+import type { SectionProps } from "./registry";
 
-export default function Jury() {
+export default function Jury({ site }: SectionProps) {
   const track = useRef<HTMLDivElement>(null);
+  const jury = site.content.jury ?? [];
 
   const scrollBy = (dir: 1 | -1) => {
     track.current?.scrollBy({ left: dir * 320, behavior: "smooth" });

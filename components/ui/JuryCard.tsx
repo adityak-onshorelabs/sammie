@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { easeOutExpo } from "@/lib/motion";
-import type { JuryMember } from "@/data/jury";
+import type { JuryMember } from "@/config/types";
 
 function initials(name: string) {
   return name

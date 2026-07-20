@@ -1,8 +1,8 @@
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
-import { event } from "@/data/event";
+import type { SectionProps } from "./registry";
 
-export default function RegisterCTA() {
+export default function RegisterCTA({ site }: SectionProps) {
   return (
     <section className="relative overflow-hidden border-t border-line bg-[linear-gradient(115deg,var(--color-gold-light),var(--color-gold)_38%,var(--color-gold-deep)_72%,var(--color-gold-bronze))]">
       <div
@@ -23,7 +23,7 @@ export default function RegisterCTA() {
           </p>
         </Reveal>
         <Button
-          href={event.registerUrl}
+          href={site.event.registerUrl}
           variant="ghost"
           className="shrink-0 !border-bg !text-bg hover:!bg-bg hover:!text-gold"
         >
