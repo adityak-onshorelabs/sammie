@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // Runs before first paint: decides whether this load shows the intro loader.
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body className="min-h-dvh bg-bg text-text">
         <div id="intro-shield" aria-hidden />
         {children}
+        <Analytics />
       </body>
     </html>
   );
