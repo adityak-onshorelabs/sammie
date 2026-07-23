@@ -48,4 +48,32 @@ export const jury: JuryMember[] = [
     company: "Pizza Hut",
     photo: `${IK}/Prakhar%20Jaiswal,%20Head%20of%20Brand%20and%20Media,%20Pizza%20Hut.jpeg${TR}`,
   },
+  {
+    id: "harmeet-singh",
+    name: "Harmeet Singh",
+    role: "",
+    company: "",
+    photo: `${IK}/Harmeet%20Singh%20(1).jpg${TR}`,
+  },
+  {
+    id: "apeksha-gupta",
+    name: "Apeksha Gupta",
+    role: "",
+    company: "",
+    photo: `${IK}/Apeksha%20Gupta.jpg${TR}`,
+  },
+  {
+    id: "ravi-saxena",
+    name: "Ravi Saxena",
+    role: "",
+    company: "",
+    photo: `${IK}/Ravi%20Saxena.jpeg${TR}`,
+  },
+  {
+    id: "aparajita-biswas",
+    name: "Aparajita Biswas",
+    role: "Head of Marketing",
+    company: "The Hindu Group",
+    photo: `${IK}/Aparajita%20Biswas,%20Head%20of%20Marketing,%20The%20Hindu%20Group.jpeg${TR}`,
+  },
 ];
